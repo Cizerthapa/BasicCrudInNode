@@ -1,13 +1,11 @@
-// src/database/database.js
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import mongoose from 'mongoose';
 
 dotenv.config();
 
-const connectDB = async () => {
+const connectDB = async (url) => {
   try {
-    const uri = process.env.MONGO_URL;
-
+    const uri = url;
     if (!uri) {
       throw new Error('MONGO_URL is not defined in .env file');
     }

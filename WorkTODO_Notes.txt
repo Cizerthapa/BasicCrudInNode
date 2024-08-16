@@ -1,0 +1,88 @@
+WorkTODO_Notes
+
+Focus
+- TypeScript
+- Microservices
+  Microservices is a service that provides flexibility to create and manage services that are independent of each other. 
+  It helps to create and manage service independently.
+  Mostly used in large projects/company.
+
+- Input Validation
+- Api Documentation Swagger
+
+-------------------------------------------------------
+Procedural programming 
+
+REST API -  HTTP client
+
+Middleware
+
+ES6 Vs JavaScript 
+
+JavaScript is a scripting or programming language that allows you to implement complex features on web pages.
+ES6, also known as ECMAScript 2015, is the sixth edition of the ECMAScript standard.
+
+1. Arrow Functions, Class Syntax, Modules, Template Literals
+
+2. Let and Const Declarations - prevents hoisting
+
+3. Spread and Rest Operators
+
+Use ES6 and use its work also learn 
+
+----------------------------------------------------
+
+Authentication and Authorization
+-> In simple terms, authentication is the process of verifying who a user is, while authorization is the process of verifying what 
+   they have access to.
+
+   Comparing these processes to a real-world example, when you go through security in an airport, you show your ID to authenticate
+   your identity.
+
+role based auth
+
+----------------------------------------------------
+
+-Database Seeding
+what is database seeder/seeding?
+-> Database seeding is populating a database with an initial set of data.
+
+How to check if the database exists or is empty?
+->  function checkDatabaseAndEmpty(uri, databaseName):
+    // Connect to MongoDB using the provided URI
+    connect to MongoDB using uri
+
+    // List all databases
+    databases = list all databases
+
+    // Check if the specified database exists
+    if databaseName is in databases:
+        print "Database exists"
+        
+        // Switch to the specified database
+        switch to databaseName
+        
+        // List all collections in the specified database
+        collections = list all collections in the database
+        
+        // Check if the database is empty
+        if collections is empty:
+            print "Database is empty"
+        else:
+            print "Database is not empty"
+    else:
+        print "Database does not exist"
+
+    // Close the connection to MongoDB
+    close connection
+
+--------------------------------------------------- 
+
+Data Access Object - DAO in JS 
+
+-GitHub
+How to git pull and merge between 2 peps working toghether? 
+
+----------------------------------------------------
+
+ES Modules vs. CommonJS to solve future problems

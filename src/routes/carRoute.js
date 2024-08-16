@@ -1,13 +1,15 @@
-// src/routes/carRoutes.js
-const express = require('express');
-const { createCar, getCar, deleteCar, deleteCarbyId, updateCar } = require('../controllers/carController.js');
+// src/routes/carRoute.js
+import express from 'express';
+import { createCar, getCar, deleteCar, deleteCarbyId, updateCar } from '../controllers/carController.js';
+import verifyToken from '../middleware/authMiddleware.js';
+
 const router = express.Router();
 
 // Middleware for validating text fields
 router.get('/', getCar);
-router.post("/postcar", createCar);
-router.delete("/deletecar", deleteCar);
-router.delete('/deletecarbyid', deleteCarbyId);
-router.put('/carupdate', updateCar);
+router.post("/postcar", verifyToken, createCar);
+router.delete("/deletecar", verifyToken, deleteCar);
+router.delete('/deletecarbyid', verifyToken, deleteCarbyId);
+router.put('/carupdate', verifyToken, updateCar);
 
-module.exports = router;
+export default router; // Use export default

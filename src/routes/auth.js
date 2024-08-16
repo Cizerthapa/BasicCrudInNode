@@ -1,10 +1,11 @@
 // src/routes/auth.js
-const express = require('express');
+import express from 'express';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import User from '../model/User.js';
+import Car from '../model/carmodel.js'; // Note: If Car isn't used in this file, you can remove this import.
+
 const router = express.Router();
-const Car = require('../model/carmodel.js');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const User = require('../model/User.js');
 
 router.post('/register', async (req, res) => {
     try {
@@ -25,35 +26,40 @@ router.post("/user/generateToken", (req, res) => {
 
     // Then generate JWT Token
 
-    let jwtSecretKey = process.env.JWT_SECRET_KEY;
-    let data = {
+    const jwtSecretKey = process.env.JWT_SECRET_KEY;
+    const data = {
         time: Date(),
         userId: 12,
-    }
+    };
 
     const token = jwt.sign(data, jwtSecretKey);
-    const yo = req.header.Cizer;
+    const yo = req.headers.Cizer; // Use 'req.headers' to access headers
     console.log(yo);
     res.send(token);
 });
 
 // Car login
 router.post('/login', async (req, res) => {
-try {
-    const { username, password } = req.body;
+    try {
+        const { username, password } = req.body;
 
-    const user = await User.findOne({ username });
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(401).json({ error: 'User not found' });
+        }
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (!passwordMatch) {
-        return res.status(401).json({ error: 'Authentication failed' });
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        if (!passwordMatch) {
+            return res.status(401).json({ error: 'Authentication failed' });
+        }
+
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
+            expiresIn: '1h',
+        });
+        return res.status(200).json({ message: "Login Success!", data: token });
+    } catch (error) {
+        return res.status(500).json({ error: 'Login failed', message: error.message });
     }
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
-        expiresIn: '1h',
-    });
-    return res.status(200).json({ token });
-} catch (error) {
-    return res.status(500).json({ error: 'Login failed', message: error.message });
-}
 });
-module.exports = router;
+
+export default router;

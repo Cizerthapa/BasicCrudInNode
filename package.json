@@ -1,6 +1,7 @@
 {
   "name": "webtokenpractice",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/app.js",
@@ -17,6 +18,8 @@
     "express-validator": "^7.2.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.5.3",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "validator": "^13.12.0",
+    "webtokenpractice": "file:"
   }
 }
